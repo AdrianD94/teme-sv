@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("//**********ex 1****************");
+      let suma = 749;
+      function transformaSuma(suma, moneda) {
+        switch (moneda) {
+          case "EUR":
+            suma = (suma / 4.83).toFixed(2);
+            break;
+          case "USD":
+            suma = (suma / 4.47).toFixed(2);
+            break;
+
+          case "HUF":
+            suma = (suma / 1.32).toFixed(2);
+            break;
+
+          default:
+            console.log(`suma este ${suma} RON`);
+        }
+        return suma;
+      }
+      console.log(`Suma in euro este: ${transformaSuma(749, "EUR")}`);
+      console.log(`Suma in dolari este: ${transformaSuma(749, "USD")}`);
+      console.log(`Suma in forinti este: ${transformaSuma(749, "HUF")}`);
+
+      console.log("//**************************ex 2*****************");
+      function tipParametru(param) {
+        return typeof param;
+      }
+
+      console.log(tipParametru(["test", 1, 3, "patru"]));
+      console.log(tipParametru(1));
+      console.log(tipParametru('unu'));
+
+      console.log("//**************************ex 3*****************");
+      function extrageLitera(propozitie) {
+        const propozitieArray = propozitie.split(" ");
+        let firstLetter = "";
+        for (let i = 0; i < propozitieArray.length; i++) {
+          firstLetter += propozitieArray[i].charAt(0);
+        }
+        console.log(firstLetter);
+      }
+      extrageLitera("Universitatea Tehnica Cluj Napoca");
+
+      console.log("//**************************ex 4*****************");
+      const fraze = [
+        "Quisque faucibus ipsum id nibh egestas bibendum.",
+        "Phasellus tincidunt sapien nec est tempus lacinia.",
+        "Curabitur ac elit at turpis ultrices hendrerit at et tellus.",
+        "Praesent a magna a ligula gravida sodales eu ut erat.",
+        "Ut eleifend velit vitae ipsum mattis viverra.",
+      ];
+      for (let i = 0; i < fraze.length; i++) {
+        extrageLitera(fraze[i]);
+      }
+      console.log("//**************************ex 5*****************");
+
+      class Shape {
+        constructor(color, numberOfSides) {
+          this.color = color;
+          this.numberOfSides = numberOfSides;
+        }
+        showColor() {
+          return `the color of the shape is ${this.color}`;
+        }
+        perimeter() {
+          let perimeter;
+          return (perimeter = this.numberOfSides.reduce((a, b) => a + b, 0));
+        }
+        semiPerimeter() {
+          let semiPerimeter = this.numberOfSides.reduce((a, b) => a + b, 0) / 2;
+          return semiPerimeter;
+        }
+        showTypeOfShape() {
+          switch (this.numberOfSides.length) {
+            case 3:
+              console.log(`The shape is a triangle`);
+              break;
+            case 4:
+              console.log(`The shape is a quadrilateral`);
+              break;
+            case 5:
+              console.log(`The shape is a pentagon`);
+              break;
+            case 6:
+              console.log(`The shape is a hexagon`);
+              break;
+            default:
+              console.log("WORK IN PROGRESS");
+          }
+        }
+      }
+
+      const shape = new Shape("red", [10, 4, 1]);
+
+      shape.showTypeOfShape();
+      console.log(shape.showColor());
+      console.log(`the shape perimeter is ${shape.perimeter()}`);
+      console.log(`the shape semi-perimeter is ${shape.semiPerimeter()}`);
+
+      console.log("********ex 6*********");
+
+      class Triangle extends Shape {
+        constructor(color, numberOfSides) {
+          super(color, numberOfSides);
+        }
+        area() {
+          let semiP = this.semiPerimeter();
+          let a = this.numberOfSides[0];
+          let b = this.numberOfSides[1];
+          let c = this.numberOfSides[2];
+          return Math.sqrt(semiP * (semiP - a) * (semiP - b) * (semiP - c));
+        }
+      }
+      const triangle = new Triangle("orange", [5, 4, 3]);
+
+      triangle.showTypeOfShape();
+      console.log(triangle.showColor());
+      console.log(`the area of the triangle is ${triangle.area()}`);
+      console.log(
+        `the semi-peritmer of the triangle is ${triangle.semiPerimeter()} `
+      );
+      console.log(`the peritmer of the triangle is ${triangle.perimeter()} `);
+
+      class Square extends Shape {
+        constructor(color, numberOfSides) {
+          super(color, numberOfSides);
+        }
+        area() {
+          let a = this.numberOfSides[0];
+
+          return a ** 2;
+        }
+      }
+      const square = new Square("grey", [5, 5, 5, 5]);
+      square.showTypeOfShape();
+      console.log(square.showColor());
+      console.log(`the area of the square is ${square.area()}`);
+      console.log(
+        `the semi-peritmer of the square is ${square.semiPerimeter()} `
+      );
+      console.log(`the peritmer of the square is ${square.perimeter()} `);
+    </script>
+  </body>
+</html>
